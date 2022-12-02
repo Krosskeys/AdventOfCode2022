@@ -1,3 +1,6 @@
+//INSERT YOUR DATASET HERE, IMPORT IT OR SOMETHING. 
+//const dat= 
+
 function reparsePlays(play) {
   switch (play) {
     case 'X':
@@ -10,12 +13,14 @@ function reparsePlays(play) {
 }
 
 function decidePlay(match) {
-
   //Still not using typescript on a day full of enums lol
   const rpsToNum = {
     A: 0,
+    X: 0,
     B: 1,
-    C: 2
+    Y: 1,
+    C: 2,
+    Z: 2
   }
   const rpsMatrix = [
     //T M  R  P  S
@@ -23,13 +28,7 @@ function decidePlay(match) {
     /*P*/ [0, 1, 2],
     /*S*/ [2, 0, 1]
   ]
-  const winLoseDraw = {
-    Z: 2,
-    X: 0,
-    Y: 1
-  }
-  const play = rpsMatrix[rpsToNum[match.them]].indexOf(winLoseDraw[match.me]);
-  return Object.keys(rpsToNum).find((k) => rpsToNum[k] === play)
+  return Object.keys(rpsToNum).find((k) => rpsToNum[k] === rpsMatrix[rpsToNum[match.them]].indexOf(rpsToNum[match.me]))
 }
 
 function playAndScore(match) {
